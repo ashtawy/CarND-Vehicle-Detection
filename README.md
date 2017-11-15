@@ -1,4 +1,4 @@
-** Vehicle Detection Project**
+**Vehicle Detection Project**
 
 The goals / steps of this project are the following:
 
@@ -16,6 +16,7 @@ The paths of all vehicle and non-vehicle images have been parsed in `load_data()
 There are a total of 8968 non-vehicle and 8792 vehicle images that were downloaded from [here](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip) and [here](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip), respectively. Here are two random vehicle and non-vehicle images from the data
 
 <p align="center"> <img src="./images_and_videos/car_noncar.png"> </p>
+
 ### Histogram of Oriented Gradients (HOG)
 
 I use the function `get_hog_features()` in the project's notebook to extract the Histogram of Oriented Gradients (HOG) features. 
@@ -28,7 +29,7 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 
 I tried various combinations of parameters and I chose the one that has the best classification accuracy when I used HOG features to train the SVM classifier and also the combination that led to the best vehicle detection performance on the videos provided in this project [test_video.mp4](./images_and_videos/test_video.mp4) and [project_video.mp4](./images_and_videos/project_video.mp4).
 
-### Color Histogram and Spatial-based features
+#### Color Histogram and Spatial-based features
 
 In addition to HOG features, I also extract color-histogram and spatial-based features for every vehicle and non-vehicle image. I use these to further improve the classifier's accuracy and robustness. I use the functions `bin_spatial()` with size of 32X32 pixels for each channel to extract the (32*32*3=) 3072 spatial features. The function `color_hist()` computes (32*3=) 96 features of color frequencies.
 
@@ -49,12 +50,12 @@ I searched on several scales using YCrCb 3-channel HOG features plus spatially b
 
 ### Video Implementation
 
-#### Output video
+### Output video
 
 Here's a [link to my video result](./images_and_videos/project_video_detected.mp4)
 
 
-#### Filtering false positives and combining overlapping bounding boxes.
+### Filtering false positives and combining overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected. 
 
